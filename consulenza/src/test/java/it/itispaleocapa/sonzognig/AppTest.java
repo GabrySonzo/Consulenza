@@ -23,6 +23,26 @@ class AppTest {
     }
 
     @Test
+    public void aggiungiTecnicoTest() throws AnnoNonValidoException, statoNonValidoException, specializazzioneNonValidaException{
+        Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2005, "info_tele", "interno");
+        p.aggiungiPartecipante(pers1, 5);
+        assertEquals(1, p.p.size());
+    }
+
+    @Test
+    public void aggiungifunzionarioTest() throws AnnoNonValidoException{
+        Funzionario pers1 = new Funzionario("Franca", "Alessandrini", "Als", 2022);
+        p.aggiungiPartecipante(pers1, 5);
+        assertEquals(1, p.p.size());
+    }
+
+    public void aggiungiDirigenteTest() throws AnnoNonValidoException{
+        Dirigente pers1 = new Dirigente("Michele", "Leonardi", "Leo", 1989);
+        p.aggiungiPartecipante(pers1, 5);
+        assertEquals(1, p.p.size());
+    }
+
+    @Test
     public void speseTecnicoTest() throws AnnoNonValidoException, statoNonValidoException, specializazzioneNonValidaException{
         Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2005, "info_tele", "interno");
         Tecnico pers2 = new Tecnico("Giulia", "Sonzogni", "Szg", 2005, "info_tele", "esterno");
