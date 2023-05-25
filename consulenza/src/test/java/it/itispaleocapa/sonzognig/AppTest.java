@@ -7,6 +7,7 @@ import it.itispaleocapa.sonzognig.Tecnico.specializazzioneNonValidaException;
 import it.itispaleocapa.sonzognig.Tecnico.statoNonValidoException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AppTest {
 
@@ -89,37 +90,22 @@ class AppTest {
 
     @Test 
     public void AnnoNonValidoExceptionTest() throws statoNonValidoException, specializazzioneNonValidaException{
-        int test = 0;
-        try{
-            Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 20, "info_tele", "interno");
-        }catch(AnnoNonValidoException e){
-            test = 1;
-            System.out.println(e.getMessage());
-        }
-        assertEquals(1, test);
+        assertThrows(AnnoNonValidoException.class, () -> {
+            Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2025, "info_tele", "interno");
+        });
     }
 
     @Test
     public void statoNonValidoExceptionTest() throws AnnoNonValidoException, specializazzioneNonValidaException{
-        int test = 0;
-        try{
+        assertThrows(statoNonValidoException.class, () -> {
             Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2005, "info_tele", "bello");
-        }catch(statoNonValidoException e){
-            test = 1;
-            System.out.println(e.getMessage());
-        }
-        assertEquals(1, test);
+        });
     }
 
     @Test
     public void specializazzioneNonValidaExceptionTest() throws AnnoNonValidoException, statoNonValidoException{
-        int test = 0;
-        try{
-            Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2005, "italiano", "esterno");
-        }catch(specializazzioneNonValidaException e){
-            test = 1;
-            System.out.println(e.getMessage());
-        }
-        assertEquals(1, test);
+        assertThrows(specializazzioneNonValidaException.class, () -> {
+            Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2005, "ita", "esterno");
+        });
     }
 }
