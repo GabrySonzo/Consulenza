@@ -86,4 +86,40 @@ class AppTest {
         p.aggiungiPartecipante(pers7, 1);
         assertEquals(1286, p.calcolaSpeseTot());
     }
+
+    @Test 
+    public void AnnoNonValidoExceptionTest() throws statoNonValidoException, specializazzioneNonValidaException{
+        int test = 0;
+        try{
+            Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 20, "info_tele", "interno");
+        }catch(AnnoNonValidoException e){
+            test = 1;
+            System.out.println(e.getMessage());
+        }
+        assertEquals(1, test);
+    }
+
+    @Test
+    public void statoNonValidoExceptionTest() throws AnnoNonValidoException, specializazzioneNonValidaException{
+        int test = 0;
+        try{
+            Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2005, "info_tele", "bello");
+        }catch(statoNonValidoException e){
+            test = 1;
+            System.out.println(e.getMessage());
+        }
+        assertEquals(1, test);
+    }
+
+    @Test
+    public void specializazzioneNonValidaExceptionTest() throws AnnoNonValidoException, statoNonValidoException{
+        int test = 0;
+        try{
+            Tecnico pers1 = new Tecnico("Giulio", "Patera", "Ptr", 2005, "italiano", "esterno");
+        }catch(specializazzioneNonValidaException e){
+            test = 1;
+            System.out.println(e.getMessage());
+        }
+        assertEquals(1, test);
+    }
 }
